@@ -1,0 +1,14 @@
+---
+- name: Auto backup to managed node
+  hosts: all
+  tasks:
+     - name: create directory of backup
+       file:
+         path: /tmp/backup/"{{inventory_hostname}}"
+         state: directory
+
+     - name: real backup for "{{inventory_hostname}}"
+       copy:
+         src: /adhamplaybooks/filee.txt
+         dest: /tmp/backup/
+         mode: 0644
